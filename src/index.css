@@ -11,3 +11,15 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.App {
+  margin: 30px;
+}
+
+canvas {
+  width: 1450px;
+  height: 600px;
+  background-color: black;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
