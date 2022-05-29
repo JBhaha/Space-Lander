@@ -3,6 +3,7 @@ import React, { useRef, useEffect } from 'react';
 function App() {
   const canvas = useRef();
   let ctx = null;
+  const rocket = useRef();
 
   // initialize the canvas context
   useEffect(() => {
@@ -26,6 +27,30 @@ function App() {
     drawLine({ x: 1164, y: 136, x1: 1450, y1: 368 }, { color: 'white' });
   }, []);
 
+  useEffect(() => {
+    let xValue = 0;
+    let yValue = 0;
+
+    window.addEventListener('keydown', (event) => {
+      switch (event.key) {
+        case 'ArrowUp':
+          xValue++;
+          break;
+        case 'ArrowDown':
+          xValue--;
+          break;
+        case 'ArrowLeft':
+          yValue++;
+          break;
+        case 'ArrowRight':
+          yValue--;
+          break;
+      }
+    });
+
+    drawRocket({ x: xValue, y: yValue, w: 30, h: 30 });
+  }, []);
+
   // draw a line
   const drawLine = (info, style = {}) => {
     const { x, y, x1, y1 } = info;
@@ -36,6 +61,16 @@ function App() {
     ctx.lineTo(x1, y1);
     ctx.strokeStyle = color;
     ctx.lineWidth = 3;
+    ctx.stroke();
+  };
+
+  const drawRocket = (info = {}) => {
+    const { x, y, w, h } = info;
+
+    ctx.beginPath();
+    ctx.strokeStyle = 'red';
+    ctx.lineWidth = 3;
+    ctx.rect(x, y, w, h);
     ctx.stroke();
   };
 
