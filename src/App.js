@@ -9,7 +9,7 @@ let obstacle5;
 let ctx;
 
 function startGame(){
-  gamePiece = new component(30, 30, "red", 10, 120);
+  gamePiece = new component(30, 30, "red", 1000, 120);
   obstacle = new component(400, 10, "white", 0, 800);
   obstacle2 = new component(400, 10, "white", 400, 950);
   obstacle3 = new component(400, 10, "white", 800, 750);
@@ -83,7 +83,12 @@ function component(width, height, color, x, y) {
 }
 
 function updateGameArea() {
-  if (gamePiece.crashWith(obstacle) && gamePiece.speedY < 0){
+  if ((gamePiece.crashWith(obstacle) ||
+      gamePiece.crashWith(obstacle2) ||
+      gamePiece.crashWith(obstacle3) ||
+      gamePiece.crashWith(obstacle4) ||
+      gamePiece.crashWith(obstacle5))
+      && gamePiece.speedY < 0){
     gameArea.stop();
   } else {
     gameArea.clear();
